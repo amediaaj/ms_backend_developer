@@ -1,20 +1,18 @@
-﻿// Create and initialize array 
-        string[] language = {"Ruby", "C", "C++", "Java", 
-                            "Perl", "C#", "Python", "PHP"}; 
- 
-        // Display language array 
-        Console.WriteLine("Display the array:"); 
-        foreach(string i in language) 
-        { 
-            Console.WriteLine(i); 
-        } 
- 
-        // Display and check the given elements 
-        // present in the array or not 
-         
-        // Using Exists() method 
-        Console.WriteLine("Is Ruby part of language: {0}", 
-                        Array.Exists(language, element => element == "Ruby")); 
- 
-        Console.WriteLine("Is VB part of language: {0}", 
-                        Array.Exists(language, element => element == "VB")); 
+﻿// Initialize a string
+string text = "Hello World";
+int vowelCount = 0;
+
+
+// Loop through each character in the string
+foreach (char c in text.ToLower())
+{
+    // Check if the character is a vowel
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+    {
+        vowelCount++;
+    }
+}
+
+
+// Output the number of vowels
+Console.WriteLine("The number of vowels is: " + vowelCount);
