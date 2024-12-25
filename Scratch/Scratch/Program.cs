@@ -1,18 +1,17 @@
-﻿// Initialize a string
-string text = "Hello World";
-int vowelCount = 0;
+﻿string button = "OJ";
 
-
-// Loop through each character in the string
-foreach (char c in text.ToLower())
-{
-    // Check if the character is a vowel
-    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
-    {
-        vowelCount++;
-    }
+switch(button){
+    case "Water":
+        Console.WriteLine("Dispensing Water");
+        break;
+    case "Soda":
+        Console.WriteLine("Dispensing Soda");
+        break;
+    case "Coffee":
+        Console.WriteLine("Dispensing Coffee");
+        break;
+        // create a default case
+    default:
+        Console.WriteLine("Invalid Option");
+        break;
 }
-
-
-// Output the number of vowels
-Console.WriteLine("The number of vowels is: " + vowelCount);
