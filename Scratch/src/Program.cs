@@ -4,7 +4,8 @@ using Patterns;
 
 class Program
 {
-    static async Task Main ()
+    static void Main ()
+    // static async Task Main ()
     {
         // Test Person class
         TestPerson();
@@ -17,11 +18,12 @@ class Program
         // Executes observer pattern example
         TestWeatherStation();
         // Executes async methods
-        await TestAsync();
+        TestAsync();
     }
 
     // Executes async methods example
-    static async Task TestAsync()
+    static void TestAsync()
+    // static async Task TestAsync()
     {
         Console.WriteLine("***** Testing async methods: \n");
 
@@ -40,20 +42,23 @@ class Program
             task4 
         };
 
-        while (tasks.Any())
-        {
-            var finishedTask = await Task.WhenAny(tasks);
-            tasks.Remove(finishedTask);
+        // Print results as they complete
+        // Must change method signitures for TestAsync and Main to async Task
+        
+        // while (tasks.Any())
+        // {
+        //     var finishedTask = await Task.WhenAny(tasks);
+        //     tasks.Remove(finishedTask);
 
-            var result = await finishedTask;
-            Console.WriteLine(result);
-        }
+        //     var result = await finishedTask;
+        //     Console.WriteLine(result);
+        // }
 
-        // Task.WhenAll(tasks);
-        // Console.WriteLine(task1.Result);
-        // Console.WriteLine(task2.Result);
-        // Console.WriteLine(task3.Result);
-        // Console.WriteLine(task4.Result);
+        Task.WhenAll(tasks);
+        Console.WriteLine(task1.Result);
+        Console.WriteLine(task2.Result);
+        Console.WriteLine(task3.Result);
+        Console.WriteLine(task4.Result);
     }
 
     // Executes observer pattern example
