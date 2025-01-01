@@ -1,17 +1,59 @@
-﻿using Patterns;
+﻿using System.Runtime.CompilerServices;
+using System.Xml.XPath;
+using Patterns;
 
 class Program
 {
-    static void Main ()
+    static async Task Main ()
     {
-       // Executes inheritance and polymorphism examples
-       TestAnimal();
-       // Executes singleton pattern example
-       TestDatabase();
-       // Executes factory pattern example
-       TestNotification();
-       // Executes observer pattern example
-       TestWeatherStation();
+        // Test Person class
+        TestPerson();
+        // Executes inheritance and polymorphism examples
+        TestAnimal();
+        // Executes singleton pattern example
+        TestDatabase();
+        // Executes factory pattern example
+        TestNotification();
+        // Executes observer pattern example
+        TestWeatherStation();
+        // Executes async methods
+        await TestAsync();
+    }
+
+    // Executes async methods example
+    static async Task TestAsync()
+    {
+        Console.WriteLine("***** Testing async methods: \n");
+
+        SimulateAsync simulateAsync = new SimulateAsync();
+        ReadFile readFile = new ReadFile();
+        Task<string> task1 = simulateAsync.GetInfoAsync();
+        Task<string> task2 = simulateAsync.GetInfoAsync("Info from async method with parameter");
+        Task<string> task3 = simulateAsync.GetInfoAsync("Info from async method with parameter and delay", 1000);
+        Task<string> task4 = readFile.ReadFileAsync("../../../src/async/test.txt");
+
+          var tasks = new List<Task<string>>
+        {
+            task1,
+            task2,
+            task3,
+            task4 
+        };
+
+        while (tasks.Any())
+        {
+            var finishedTask = await Task.WhenAny(tasks);
+            tasks.Remove(finishedTask);
+
+            var result = await finishedTask;
+            Console.WriteLine(result);
+        }
+
+        // Task.WhenAll(tasks);
+        // Console.WriteLine(task1.Result);
+        // Console.WriteLine(task2.Result);
+        // Console.WriteLine(task3.Result);
+        // Console.WriteLine(task4.Result);
     }
 
     // Executes observer pattern example
@@ -32,6 +74,21 @@ class Program
         Console.WriteLine();
 
     }
+
+    static void TestPerson()
+    {
+        Console.WriteLine("***** Testing Person class: \n");
+
+        Person person = new Person("John", 25);
+        person.DisplayInfo();
+
+        person.Name = "Jane";
+        person.Age = 30;
+        person.DisplayInfo();
+
+        Console.WriteLine();
+    }
+
     // Executes factory pattern example
     static void TestNotification()
     {
