@@ -19,6 +19,30 @@ class Program
         TestWeatherStation();
         // Executes async methods
         TestAsync();
+        // Executes ThirdpartyService threading example
+        TestThirdPartyService();
+    }
+
+    // Executes ThirdpartyService threading example
+    static void TestThirdPartyService()
+    {
+        Console.WriteLine("***** Testing ThirdPartyService class: \n");
+
+        ThirdPartyService thirdPartyService = new ThirdPartyService();
+        thirdPartyService.FetchDataUsingAsyncAwait();
+        Console.WriteLine("I am not blocked by the async method");
+
+        List<Thread> threads = thirdPartyService.FetchReturnThreads();
+        Console.WriteLine("I am not blocked by the thread method");
+        foreach(Thread thread in threads)
+        {
+            // Joining results in blocking the main thread
+            thread.Join();
+        }   
+
+        thirdPartyService.FetchDataUsingThreads();
+        Console.WriteLine("I am blocked by the thread method");
+        Console.WriteLine();
     }
 
     // Executes async methods example
@@ -59,6 +83,7 @@ class Program
         Console.WriteLine(task2.Result);
         Console.WriteLine(task3.Result);
         Console.WriteLine(task4.Result);
+        Console.WriteLine();
     }
 
     // Executes observer pattern example
