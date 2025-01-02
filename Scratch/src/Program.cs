@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Xml.XPath;
+using Pastel;
 using Patterns;
 
 class Program
@@ -41,7 +42,7 @@ class Program
         }   
 
         thirdPartyService.FetchDataUsingThreads();
-        Console.WriteLine("I am blocked by the thread method");
+        Console.WriteLine("I am blocked by the thread method".Pastel("#FF0000"));
         Console.WriteLine();
     }
 
@@ -57,6 +58,7 @@ class Program
         Task<string> task2 = simulateAsync.GetInfoAsync("Info from async method with parameter");
         Task<string> task3 = simulateAsync.GetInfoAsync("Info from async method with parameter and delay", 1000);
         Task<string> task4 = readFile.ReadFileAsync("../../../src/async/test.txt");
+        // Task<string> task4 = readFile.ReadFileAsync("src/async/test.txt");
 
           var tasks = new List<Task<string>>
         {
@@ -83,7 +85,19 @@ class Program
         Console.WriteLine(task2.Result);
         Console.WriteLine(task3.Result);
         Console.WriteLine(task4.Result);
+
+        // Calling the static asynchronous method - See definition below
+        Task.Run(async () => await PerformLongOperationAsync()).Wait();
+        Console.WriteLine("Main method completed.");
+
         Console.WriteLine();
+    }
+
+    public static async Task PerformLongOperationAsync()
+    {
+        Console.WriteLine("Operation started...");
+        await Task.Delay(3000); // Simulate a delay of 3 seconds
+        Console.WriteLine("Operation completed.");
     }
 
     // Executes observer pattern example
