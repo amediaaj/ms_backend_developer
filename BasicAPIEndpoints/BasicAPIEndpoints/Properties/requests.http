@@ -1,0 +1,59 @@
+// Statice Routes
+
+GET http://localhost:5237/
+
+###
+
+GET http://localhost:5237/Downloads
+
+###
+
+PUT http://localhost:5237/
+
+###
+
+DELETE http://localhost:5237/
+
+###
+
+POST http://localhost:5237/
+
+// Routes with parameters (Dynamic Routes)
+
+###
+
+GET http://localhost:5237/Users/4/localhost:5237/users/4/posts/vacation
+
+###
+
+GET http://localhost:5237/Users/23
+
+###
+
+GET http://localhost:5237/Names/ABC
+
+###
+GET http://localhost:5237/Products/55
+
+// Request with min constraint
+###
+GET http://localhost:5237/Products/100
+// Similar request that handles string
+###
+GET http://localhost:5237/Products/hello
+// Similar request that handles default int
+###
+GET http://localhost:5237/Products/
+
+###
+GET http://localhost:5237/users/4/posts/my-vacation
+
+// Request with catch all
+
+###
+GET http://localhost:5237/files/abc/def/ghi/jkl/mno/pqr/stu/vwx/yz
+
+// Request with query string parameters
+
+###
+GET http://localhost:5237/search/?q=MySearch&page=2  
